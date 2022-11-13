@@ -105,14 +105,14 @@ def train():
     if args.distributed:
         distributed_utils.init_distributed_mode(args)
         local_rank = torch.distributed.get_rank()
-        device = torch.device("cuda:1", local_rank)
+        device = torch.device("cuda", local_rank)
         print("git:\n  {}\n".format(distributed_utils.get_sha()))
 
     # cuda
     if args.cuda:
         print('use cuda')
         # cudnn.benchmark = True
-        device = torch.device("cuda:1")
+        device = torch.device("cuda")
     else:
         device = torch.device("cpu")
 
